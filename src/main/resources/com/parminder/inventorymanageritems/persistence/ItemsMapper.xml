@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.parminder.inventorymanageritems.persistence.ItemsMapper">
+	<resultMap id="ItemResult"
+		type="com.parminder.inventorymanageritems.model.Item">
+		<result property="id" column="ID" />
+		<result property="name" column="NAME" />
+		<result property="description" column="DESCRIPTION" />
+		<result property="active" column="ACTIVE" />
+	</resultMap>
+	<select id="getItems" resultMap="ItemResult">
+		SELECT
+		ID,NAME,DESCRIPTION,ACTIVE
+		FROM MONU.ITEMS
+	</select>
+	<select id="updateItem"
+		parameterType="com.parminder.inventorymanageritems.model.Item">
+		update monu.items
+		set name = #{name}, description =
+		#{description},
+		active = #{active}
+		where id = #{id}
+	</select>
+	<select id="deleteItem" parameterType="int">
+		delete from monu.items
+		where id = #{id}
+	</select>
+	<select id="addItem"
+		parameterType="com.parminder.inventorymanageritems.model.Item">
+		insert into monu.items
+		(id,name,description,active)
+		values
+		(#{id},#{name},#{description},#{active})
+	</select>
+</mapper>
