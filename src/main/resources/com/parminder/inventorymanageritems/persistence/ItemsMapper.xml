@@ -33,6 +33,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into monu.items
 		(id,name,description,active)
 		values
-		(#{id},#{name},#{description},#{active})
+		((select (max(id) + 1) from items),#{name},#{description},#{active})
 	</select>
 </mapper>
